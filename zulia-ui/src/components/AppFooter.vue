@@ -9,13 +9,29 @@
       rel="noopener noreferrer"
       target="_blank"
     >
-      <v-icon :icon="item.icon" :size="item.icon === 'mdi-alpha-z-box' ? 18 : 16" />
+      <v-icon
+        :icon="item.icon"
+        :size="item.icon === 'mdi-alpha-z-box' ? 18 : 16"
+      />
     </a>
-    <v-switch v-model="darkToggle" color="primary" label="Dark" class="mt-6 ml-4" @update:model-value="toggleTheme" />
+    <v-switch
+      v-model="darkToggle"
+      color="primary"
+      label="Dark"
+      class="mt-6 ml-4"
+      @update:model-value="toggleTheme"
+    />
 
-    <div class="text-caption text-disabled" style="position: absolute; right: 16px">
+    <div
+      class="text-caption text-disabled"
+      style="position: absolute; right: 16px"
+    >
       &copy; 2014-{{ new Date().getFullYear() }}
-      <a class="d-none d-sm-inline-block" href="https://ascend-tech.us" rel="noopener noreferrer" target="_blank"
+      <a
+        class="d-none d-sm-inline-block"
+        href="https://ascend-tech.us"
+        rel="noopener noreferrer"
+        target="_blank"
         >Ascendant Software Technology, LLC</a
       >
       —
@@ -33,6 +49,7 @@
 
 <script setup lang="ts">
 import { useTheme } from "vuetify";
+import { ref } from "vue";
 
 const darkToggle = ref(true);
 
