@@ -36,6 +36,8 @@
     "vite": "^6.1.0",
     "vite-plugin-vuetify": "^2.1.0",
     "vue-router": "^4.4.0",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.1.10",
+    "whatwg-fetch": "^3.6.20",
+    "fetch-intercept": "^2.4.0"
   }
 }
