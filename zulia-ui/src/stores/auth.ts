@@ -15,7 +15,7 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     router: useRouter(),
     unregisterInterceptor: fetchIntercept.register({
-      request(url: string, config: unknown): Promise<unknown[]> | unknown[] {
+      request(url: string, config: any): Promise<unknown[]> | unknown[] {
         if (!url.endsWith("oauth/access_token")) {
           return useAuthStore()
             .refreshIfNeeded()
@@ -57,6 +57,18 @@ export const useAuthStore = defineStore("auth", {
           .catch((error) => reject(error));
       });
     },
+    async logout(): Promise<void> {
+      return new Promise((resolve) => {
+        this.clearLocalStorage();
+        useClientState().addAppNotification({
+          title: "Session Expired",
+          message: "Please login again.",
+          showAppNotification: true,
+          color: "error",
+        });
+        this.router.push({ name: "Login" }).then(() => resolve);
+      });
+    },
     refreshIfNeeded(): Promise<void> {
       return new Promise((resolve, reject) => {
         const lastTime = localStorage.getItem("lastTime") as string;
@@ -74,14 +86,9 @@ export const useAuthStore = defineStore("auth", {
 
           if (now.getTime() > expiresInDate.getTime()) {
             // user has been idle and need to login again
-            this.clearLocalStorage();
-            useClientState().addAppNotification({
-              title: "Session Expired",
-              message: "Please login again.",
-              showAppNotification: true,
-              color: "error",
+            this.logout().then(() => {
+              resolve();
             });
-            this.router.push({ name: "Login" }).then(() => resolve);
           } else {
             if (diffMinutes < 10 && diffMinutes > 0) {
               authAPI.zuliauirest

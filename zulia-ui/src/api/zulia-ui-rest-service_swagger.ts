@@ -9,6 +9,14 @@
  * ---------------------------------------------------------------
  */
 
+export interface UserEntity {
+  username: string;
+  password: string;
+  hashedPassword: string;
+  /** @format date-time */
+  dateCreated: string;
+}
+
 export interface UsernamePasswordCredentials {
   /** @minLength 1 */
   username: string;
@@ -234,6 +242,34 @@ export class HttpClient<SecurityDataType = unknown> {
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   zuliauirest = {
+    /**
+     * No description
+     *
+     * @name Home
+     * @request GET:/zuliauirest/
+     */
+    home: (params: RequestParams = {}) =>
+      this.request<string, any>({
+        path: `/zuliauirest/`,
+        method: "GET",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @name CreateUser
+     * @request POST:/zuliauirest/create-user
+     */
+    createUser: (data: UserEntity, params: RequestParams = {}) =>
+      this.request<void, any>({
+        path: `/zuliauirest/create-user`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        ...params,
+      }),
+
     /**
      * No description
      *

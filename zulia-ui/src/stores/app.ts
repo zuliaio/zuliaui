@@ -32,7 +32,7 @@ export const useAppStore = defineStore("app", {
           }
         });
     },
-    async callHomeWithRole(): Promise<void> {
+    async callForbidden(): Promise<void> {
       zuliaAPI.zuliauirest
         .forbiddenTest()
         .then((res) => {

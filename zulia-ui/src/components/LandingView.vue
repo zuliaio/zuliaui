@@ -6,7 +6,7 @@
         <h1 class="text-h2 font-weight-bold">Zulia UI!</h1>
         <v-divider class="ma-10" />
         <div class="pa-2">You have successfully logged into your project!</div>
-        <v-btn @click="callHome()">Call Forbidden</v-btn>
+        <v-btn @click="callForbidden()">Call Forbidden</v-btn>
         <v-btn class="ml-2" @click="callHomeAdmin()">Call Admin Role</v-btn>
       </div>
     </v-responsive>
@@ -19,6 +19,15 @@ import { useAppStore } from "@/stores/app";
 function callHome() {
   useAppStore()
     .callHome()
+    .then(() => {})
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function callForbidden() {
+  useAppStore()
+    .callForbidden()
     .then(() => {})
     .catch((error) => {
       console.log(error);
