@@ -6,8 +6,12 @@
         <h1 class="text-h2 font-weight-bold">Zulia UI!</h1>
         <v-divider class="ma-10" />
         <div class="pa-2">You have successfully logged into your project!</div>
-        <v-btn @click="callForbidden()">Call Forbidden</v-btn>
-        <v-btn class="ml-2" @click="callHomeAdmin()">Call Admin Role</v-btn>
+        <v-btn color="primary" class="mb-2" @click="callForbidden()"
+          >Call Forbidden</v-btn
+        >
+        <v-btn color="primary" class="mb-2 ml-2" @click="callHomeAdmin()"
+          >Call Admin Role</v-btn
+        >
       </div>
     </v-responsive>
   </v-container>
